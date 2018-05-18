@@ -5,7 +5,11 @@ describe('My application from scratch', () => {
     });
 
     it('will have the correct title', () => {
-      cy.title().should('include', 'My application');
+      cy.title().should('include', 'GitRDone');
+    });
+
+    it('will have a big button', () => {
+      cy.get('#big-button').should('contain', 'Click Me');
     });
   });
 });
