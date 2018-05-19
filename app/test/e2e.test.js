@@ -4,7 +4,7 @@ const server = require('../server');
 describe('theServer', () => {
   let response;
 
-  context('when I hit the home route', () => {
+  context('when I hit the healthcheck route', () => {
     beforeEach(async () => {
       response = await server.inject({
         method: 'GET',
@@ -16,8 +16,11 @@ describe('theServer', () => {
       expect(response.statusCode).to.equal(200);
     });
 
-    it('will reply with \'Hello\'', () => {
-      expect(response.result).to.equal('Hello');
+    it('will reply with name and version', () => {
+      expect(response.result).to.deep.equal({
+        name: 'app',
+        version: '1.0.0'
+      });
     });
   });
 });

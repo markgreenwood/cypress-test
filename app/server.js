@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const Inert = require('inert');
+const pkg = require('./package.json');
 
 const server = Hapi.server({ host: 'localhost', port: 9000 });
 
@@ -10,16 +11,15 @@ const server = Hapi.server({ host: 'localhost', port: 9000 });
     {
       method: 'GET',
       path: '/{path*}',
-      handler: (request, h) => {
-        return h.file('public/index.html');
-      }
+      handler: (request, h) => h.file('public/index.html')
     },
     {
       method: 'GET',
       path: '/healthcheck',
-      handler: (request) => {
-        return 'Hello';
-      }
+      handler: () => ({
+        name: pkg.name,
+        version: pkg.version
+      })
     }
   ]);
 
