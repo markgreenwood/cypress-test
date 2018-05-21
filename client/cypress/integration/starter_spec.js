@@ -12,6 +12,10 @@ describe('My application from scratch', () => {
       cy.get('#page-title').should('contain', 'GitRDone List Maker');
     });
 
+    it('will have a list of items', () => {
+      cy.get('#todo-list').should('contain', 'Do this');
+    });
+
     it('will have a big button', () => {
       cy.get('#big-button').should('contain', 'Click Me');
     });

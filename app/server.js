@@ -11,7 +11,13 @@ const server = Hapi.server({ host: 'localhost', port: 9000 });
     {
       method: 'GET',
       path: '/{path*}',
-      handler: (request, h) => h.file('public/index.html')
+      handler: (request, h) => {
+        if (request.params.path && request.params.path.endsWith('main.js')) {
+          return h.file('public/main.js');
+        }
+
+        return h.file('public/index.html');
+      }
     },
     {
       method: 'GET',
