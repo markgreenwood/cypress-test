@@ -1,4 +1,4 @@
-describe('My application from scratch', () => {
+describe('GitRDone', () => {
   context('when I visit the site', () => {
     beforeEach(() => {
       cy.visit('localhost:9000');
@@ -13,11 +13,19 @@ describe('My application from scratch', () => {
     });
 
     it('will have a list of items', () => {
-      cy.get('#todo-list').should('contain', 'Do this');
+      cy.get('#todo-list')
+        .should('contain', 'Do this')
+        .should('contain', 'Do that')
+        .should('contain', 'Save the world');
     });
 
-    it('will have a big button', () => {
-      cy.get('#big-button').should('contain', 'Click Me');
+    it('will have a place to enter a new item', () => {
+      cy.get('#new-task')
+        .should('exist');
+    });
+
+    it('will allow entering a new item', () => {
+      cy.get('#new-task').type('Go to the moon');
     });
   });
 });

@@ -13,10 +13,13 @@ class App extends Component {
 
   render() {
     return (
-      <div align="center" id="todo-list">
+      <div id="todo-list">
         <ul>
           <li>Do this</li>
+          <li>Do that</li>
+          <li>Save the world</li>
         </ul>
+        <input id="new-task" type="text" />
       </div>
     );
   }
