@@ -26,6 +26,7 @@ describe('GitRDone', () => {
 
     it('will allow entering a new item', () => {
       cy.get('#new-task').type('Go to the moon');
+      cy.get('#big-button').click();
     });
   });
 });
