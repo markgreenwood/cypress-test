@@ -25,8 +25,10 @@ describe('GitRDone', () => {
     });
 
     it('will allow entering a new item', () => {
-      cy.get('#new-task').type('Go to the moon');
+      cy.get('#new-task').type('Go to Mars');
       cy.get('#big-button').click();
+      cy.get('#todo-list')
+        .should('contain', 'Go to Mars');
     });
   });
 });
