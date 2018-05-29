@@ -28,6 +28,7 @@ class App extends Component {
     };
     this.addListItem = this.addListItem.bind(this);
     this.onChangeNewTask = this.onChangeNewTask.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   onChangeNewTask(event) {
@@ -43,11 +44,17 @@ class App extends Component {
     this.setState(R.merge(this.state, { tasks }));
   }
 
+  deleteItem(event) {
+    event.preventDefault();
+    console.log('deleteListItem');
+    console.log(event.target.value);
+  }
+
   render() {
     return (
       <div id="todo-list">
         <TaskList>
-          {R.map(item => <li>{item}</li>, this.state.tasks)}
+          {R.map(item => <li>{item} <button className="delete-button" onClick={this.deleteItem}>X</button></li>, this.state.tasks)}
         </TaskList>
         <input id="new-task" type="text" onChange={this.onChangeNewTask} />
         <button id="big-button" onClick={this.addListItem}>Click Me</button>
