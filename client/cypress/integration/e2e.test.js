@@ -30,7 +30,7 @@ describe('GitRDone', () => {
       cy.visit('localhost:9000');
     });
 
-    it('will allow entering a new item', () => {
+    it('will add the new item to the list', () => {
       cy.get('#new-task').type('Go to Mars');
       cy.get('#big-button').click();
       cy.get('#todo-list')
@@ -44,8 +44,10 @@ describe('GitRDone', () => {
     });
 
     it('will have a delete button beside each item', () => {
-      cy.get('#todo-list').within(function() {
-        cy.get('li:first').get('.delete-button').should('exist');
+      cy.get('#todo-list').within(() => {
+        cy.get('li:first').within(() => {
+          cy.get('.delete-button').should('exist');
+        });
       });
     });
   });
@@ -63,6 +65,16 @@ describe('GitRDone', () => {
       });
 
       cy.get('#todo-list').should('not.contain', 'Save the world');
+    });
+
+    it('will remove a different item from the list', () => {
+      cy.get('#todo-list').within(() => {
+        cy.get('li:first').within(() => {
+          cy.get('.delete-button').click();
+        });
+      });
+
+      cy.get('#todo-list').should('not.contain', 'Do this');
     });
   });
 });
